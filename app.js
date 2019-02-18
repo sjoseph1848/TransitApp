@@ -11,8 +11,9 @@ const vehicles = [
 ]
 
 const vehicleTypes = [...new Set(vehicles.map(item => item.type))];
+const vehiclePrices = [...new Set(vehicles.map(item => item.price))]
 
-
+console.log(vehiclePrices);
 
 function TranspoTitle(props){
   return (
@@ -34,7 +35,10 @@ function TranspoOptions(props){
     </div> 
     </p>
     <label>Select Type</label>
-    
+    <select>
+          <option value ="All">All</option>
+          {props.types.map(item => <option value={item}>{item}</option>)}
+    </select>
     </div>
   )
 }
@@ -45,7 +49,7 @@ function TranspoApp(props){
   return (
       <div>
           <TranspoTitle />
-          <TranspoOptions/>  
+          <TranspoOptions types={vehicleTypes}/>  
       </div>
   )
 }
