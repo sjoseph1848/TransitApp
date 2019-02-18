@@ -1,8 +1,8 @@
-function ShoppingTitle(props){
+function TranspoTitle(props){
   return (
       <div>
-          <h1>{props.title}</h1>
-          <h2>Total Number of Items: {props.numItems}</h2>
+          <h1>Welcome to React Transportation</h1>
+          <h4>The best place to buy vehicles online</h4>
       </div>
 
   ) 
@@ -41,11 +41,13 @@ function TranspoApp(props){
 
   return (
       <div>
-          <ShoppingTitle title = "My Shopping List" numItems = "9"/>
+          <TranspoTitle />
+          <ShoppingTotal/>
           <ShoppingList header = "Food" items = {[ "Apple","Bread","Cheese"]}/>
+
           <ShoppingList header = "Clothes" items = {[ "Shirt","Pants","Hat"]}/>
           <ShoppingList header = "Supplies" items = {[ "Pen","Paper","Glue"]}/>
-          <ShoppingTotal title = "This is how much ya owe" totalCost = "$56"/>
+          
       </div>
   )
 }
