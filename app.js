@@ -13,6 +13,7 @@ const vehicles = [
 const vehicleTypes = [...new Set(vehicles.map(item => item.type))];
 const vehiclePrices = [...new Set(vehicles.map(item => item.price))]
 
+console.log(vehicleTypes);
 console.log(vehiclePrices);
 
 function TranspoTitle(props){
@@ -43,6 +44,31 @@ function TranspoOptions(props){
   )
 }
 
+function VehicleList(props){
+  return (
+    <div>
+      <h2>{props.vehicleTypes}</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th>Year</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Buy</th>
+          </tr>
+              <tr></tr>
+          <tr>
+            <td>{props.year}</td>
+            <td>{props.model}</td>
+            <td>{props.price}</td>
+            <td><button>Buy</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 
 function TranspoApp(props){
 
@@ -50,6 +76,7 @@ function TranspoApp(props){
       <div>
           <TranspoTitle />
           <TranspoOptions types={vehicleTypes}/>  
+          
       </div>
   )
 }
