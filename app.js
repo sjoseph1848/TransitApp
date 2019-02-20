@@ -10,10 +10,10 @@ const vehicles = [
   { type: "convertible", year: 2017, model: "M", price: 50000 }
 ]
 
-const vehicleTypes = [...new Set(vehicles.map(item => item.type))];
+const types = [...new Set(vehicles.map(item => item.type))];
 const vehiclePrices = [...new Set(vehicles.map(item => item.price))]
 
-console.log(vehicleTypes);
+console.log(types);
 console.log(vehiclePrices);
 
 function TranspoTitle(props){
@@ -46,28 +46,44 @@ function TranspoOptions(props){
 
 function VehicleList(props){
   return (
+      <ul>
+          <table>
+              <tr>
+                  <th>Year</th>
+                  <th>Model</th>
+                  <th>Price</th>
+                  <th>Buy</th>
+              </tr>
+              <tr>
+                  <td>{props.year}</td>
+                  <td>{props.model}</td>
+                  <td>${props.price}</td>
+                  <td><button>Buy Now</button></td>
+              </tr>
+          </table>
+      </ul>
+  )
+}
+
+function Vehicles(props){
+  return (
     <div>
-      <h2>{props.vehicleTypes}</h2>
-      <table>
-        <tbody>
-          <tr>
-            <th>Year</th>
-            <th>Model</th>
-            <th>Price</th>
-            <th>Buy</th>
-          </tr>
-              <tr></tr>
-          <tr>
-            <td>{props.year}</td>
-            <td>{props.model}</td>
-            <td>{props.price}</td>
-            <td><button>Buy</button></td>
-          </tr>
-        </tbody>
-      </table>
+      {
+        props.types.map(type => {
+          return (<div><h2>{type}s</h2>
+            {
+              props.vehicles
+                .filter(item => item.type == type)
+                .map(item => {return <VehicleList {...item}/>})
+            }
+            </div>)
+        })
+      }
     </div>
   )
 }
+
+
 
 
 function TranspoApp(props){
@@ -75,7 +91,9 @@ function TranspoApp(props){
   return (
       <div>
           <TranspoTitle />
-          <TranspoOptions types={vehicleTypes}/>  
+          <TranspoOptions types={types}/>  
+          <Vehicles types={types} vehicles={vehicles} />
+          
           
       </div>
   )
@@ -85,5 +103,6 @@ function TranspoApp(props){
 
 ReactDOM.render(
   <TranspoApp/>,
+  
   document.getElementById("root")
 )
